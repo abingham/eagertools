@@ -1,4 +1,4 @@
-def map(func, *iterables):
+def eager_map(func, *iterables):
     """Calls a function using arguments from each of the
     iterables. Stops when the shorted iterable is exhausted.
 
