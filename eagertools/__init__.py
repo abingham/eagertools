@@ -1,4 +1,5 @@
 # Hoist functions up.
+from eagertools.eager import eager_filter as filter
 from eagertools.eager import eager_map as map
 from eagertools.eager import chain, compress, dropwhile
 
