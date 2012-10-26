@@ -1,6 +1,6 @@
 def eager_map(func, *iterables):
     """Calls a function using arguments from each of the
-    iterables. Stops when the shorted iterable is exhausted.
+    iterables. Stops when the shortest iterable is exhausted.
 
     This is simply an eager version of the builtin ``map()``
     function. Since this is eager, it will run forever if any of the
