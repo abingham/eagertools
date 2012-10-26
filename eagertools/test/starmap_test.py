@@ -1,7 +1,7 @@
 import itertools
 import unittest
 
-from eagertools import starmap
+from eagertools import dostarmap, starmap
 
 def no_args():
     return 1
@@ -22,9 +22,9 @@ class StarmapTest(unittest.TestCase):
                                    zip(range(100), range(100)))))
 
     def test_no_args_no_store(self):
-        x = starmap(no_args, [], store=False)
+        x = dostarmap(no_args, [])
         self.assertEqual(x, None)
 
-    def test_two_iters(self):
-        x = starmap(two_args, zip(range(100), range(100)), store=False)
+    def test_two_iters_no_store(self):
+        x = dostarmap(two_args, zip(range(100), range(100)))
         self.assertEqual(x, None)

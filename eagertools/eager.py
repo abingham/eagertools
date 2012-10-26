@@ -16,19 +16,23 @@ import itertools
 
 from eagertools.consume import consume
 
-def eager_map(func, *iterables, store=True):
+def eager_map(func, *iterables):
     """Calls ``func`` using arguments from each of the
     ``iterables``. Stops when the shortest iterable is
     exhausted. Return a list of results.
 
-    If ``store`` is False, then this simply consumes the results of
-    the mapping.  In effect, this just calls the function for the
-    inputs and nothing else.
+    """
+
+    return list(map(func, *iterables))
+
+def domap(func, *iterables):
+    """Calls ``func`` using arguments from each of the
+    ``iterables``. Stops when the shortest iterable is exhausted. The
+    results of the calls to ``func`` are not kept.
 
     """
 
-    processor = list if store else consume
-    return processor(map(func, *iterables))
+    consume(map(func, *iterables))
 
 def starmap(func, seq, store=True):
     """Return an list whose values are returned from the function
@@ -36,5 +40,9 @@ def starmap(func, seq, store=True):
 
     """
 
-    processor = list if store else consume
-    return processor(itertools.starmap(func, seq))
+    return list(itertools.starmap(func, seq))
+
+def dostarmap(func, seq):
+    """Apply a ``func`` to arguments taken from tuples in ``seq``."""
+
+    consume(itertools.starmap(func,seq))
