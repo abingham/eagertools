@@ -13,7 +13,7 @@ setup(
     # metadata for upload to PyPI
     author = 'Austin Bingham',
     author_email = 'austin.bingham@gmail.com',
-    description = 'An eager version of itertools.',
+    description = 'Eager version of some lazy functions.',
     license = 'MIT',
     keywords = '',
     url = 'http://github.com/abingham/eagertools',

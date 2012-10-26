@@ -1,4 +1,4 @@
 eagertools
 ==========
 
-Eager versions of Python's itertools module
+Eager versions of some lazy functions.
