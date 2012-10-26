@@ -1,5 +1,9 @@
 import itertools
 
+def eager_filter():
+    # TODO
+    pass
+
 def eager_map(func, *iterables):
     """Calls a function using arguments from each of the
     iterables. Stops when the shortest iterable is exhausted.
@@ -44,8 +48,7 @@ def compress(data, selectors):
      using the selectors to choose the data elements.
 
     This is an eager version of ``itertools.compress()``. Since this
-    is eager, it will run forever if any of the input is
-    infinite.
+    is eager, it will run forever if any of the input is infinite.
 
     Args:
       data: The iterable from which this selects values.
@@ -57,3 +60,20 @@ def compress(data, selectors):
     """
 
     return list(itertools.compress(data, selectors))
+
+def dropwhile(pred, seq):
+    """Drop items from the iterable while predicate(item) is true.
+
+    This is an eager version of ``itertools.dropwhile()``. Since this
+    is eager, it will run forever if ``seq`` is infinite.
+
+    Args:
+      pred: The predicate to apply to the elements of ``seq``.
+      seq: The iterable to filter.
+
+    Returns: A list of all items in ``seq`` after the predicate
+      returns false.
+
+    """
+
+    return list(itertools.dropwhile(pred, seq))
