@@ -1,5 +1,6 @@
-# Hoist functions from their individual modules
-from eagertools.map import eager_map as map
+# Hoist functions up.
+from eagertools.eager import eager_map as map
+from eagertools.eager import eager_chain as chain
 
 # Create some aliases in case people want to use the eager and lazy
 # versions at the same time.
