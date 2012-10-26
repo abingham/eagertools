@@ -11,7 +11,7 @@ def one_arg(x):
 def two_args(x, y):
     return (x,y)
 
-class Test(unittest.TestCase):
+class MapTest(unittest.TestCase):
     def test_no_args(self):
         x = map(no_args, [])
         self.assertEqual(x, [])
