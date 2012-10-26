@@ -1,3 +1,5 @@
+import collections
+
 def consume(iterator, n=None):
     """Advance the iterator n-steps ahead. If n is none, consume entirely.
 
