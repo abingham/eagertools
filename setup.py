@@ -1,11 +1,8 @@
-import distribute_setup
-distribute_setup.use_setuptools()
-
 from setuptools import setup, find_packages
 
 setup(
     name = 'eagertools',
-    version = '0.3',
+    version = '0.4',
     packages = find_packages(),
 
     # metadata for upload to PyPI
