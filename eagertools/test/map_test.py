@@ -2,14 +2,18 @@ import unittest
 
 from eagertools import domap, map
 
+
 def no_args():
     return 1
+
 
 def one_arg(x):
     return x
 
+
 def two_args(x, y):
-    return (x,y)
+    return (x, y)
+
 
 class MapTest(unittest.TestCase):
     def test_no_args(self):

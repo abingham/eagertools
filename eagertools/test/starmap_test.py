@@ -3,11 +3,14 @@ import unittest
 
 from eagertools import dostarmap, starmap
 
+
 def no_args():
     return 1
 
+
 def two_args(x, y):
     return x + y
+
 
 class StarmapTest(unittest.TestCase):
     def test_no_args(self):
