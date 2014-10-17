@@ -1,4 +1,6 @@
 import collections
+import itertools
+
 
 def consume(iterator, n=None):
     """Advance the iterator n-steps ahead. If n is none, consume entirely.
@@ -15,4 +17,4 @@ def consume(iterator, n=None):
         collections.deque(iterator, maxlen=0)
     else:
         # advance to the empty slice starting at position n
-        next(islice(iterator, n, n), None)
+        next(itertools.islice(iterator, n, n), None)
