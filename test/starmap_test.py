@@ -1,33 +1,27 @@
 import itertools
-import unittest
 
 from eagertools import dostarmap, starmap
+from hypothesis import given
+import hypothesis.strategies as ST
+
+from util import no_args, two_args
 
 
-def no_args():
-    return 1
+def test_no_args():
+    assert starmap(no_args, []) == []
 
 
-def two_args(x, y):
-    return x + y
+@given(ST.lists(ST.integers()), ST.lists(ST.integers()))
+def test_two_iters(xs, ys):
+    expected = list(itertools.starmap(two_args, zip(xs, ys)))
+    actual = starmap(two_args, zip(xs, ys))
+    assert actual == expected
 
 
-class StarmapTest(unittest.TestCase):
-    def test_no_args(self):
-        x = starmap(no_args, [])
-        self.assertEqual(x, [])
+def test_no_args_no_store():
+    assert dostarmap(no_args, []) is None
 
-    def test_two_iters(self):
-        x = starmap(two_args, zip(range(100), range(100)))
-        self.assertEqual(
-            x,
-            list(itertools.starmap(two_args,
-                                   zip(range(100), range(100)))))
 
-    def test_no_args_no_store(self):
-        x = dostarmap(no_args, [])
-        self.assertEqual(x, None)
-
-    def test_two_iters_no_store(self):
-        x = dostarmap(two_args, zip(range(100), range(100)))
-        self.assertEqual(x, None)
+@given(ST.lists(ST.integers()), ST.lists(ST.integers()))
+def test_two_iters_no_store(xs, ys):
+    assert dostarmap(two_args, zip(xs, ys)) is None

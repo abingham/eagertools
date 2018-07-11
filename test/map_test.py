@@ -1,41 +1,33 @@
-import unittest
+from eagertools import domap, emap
+from hypothesis import given
+import hypothesis.strategies as ST
 
-from eagertools import domap, map
-
-
-def no_args():
-    return 1
+from util import no_args, one_arg, two_args
 
 
-def one_arg(x):
-    return x
+def test_empty_input():
+    assert emap(no_args, []) == []
 
 
-def two_args(x, y):
-    return (x, y)
+@given(ST.lists(ST.integers()))
+def test_one_iter(vals):
+    assert emap(one_arg, vals) == list(map(one_arg, vals))
 
 
-class MapTest(unittest.TestCase):
-    def test_no_args(self):
-        x = map(no_args, [])
-        self.assertEqual(x, [])
+@given(ST.lists(ST.integers()), ST.lists(ST.integers()))
+def test_two_iters(xs, ys):
+    assert emap(two_args, xs, ys) == list(map(two_args, xs, ys))
 
-    def test_one_iter(self):
-        x = map(one_arg, range(100))
-        self.assertEqual(x, list(range(100)))
 
-    def test_two_iters(self):
-        x = map(two_args, range(100), range(100, 200))
-        self.assertEqual(x, list(zip(range(100), range(100, 200))))
+def test_domap_does_not_call_func_for_empty_input():
+    assert domap(no_args, []) is None
 
-    def test_no_args_no_store(self):
-        x = domap(no_args, [])
-        self.assertEqual(x, None)
 
-    def test_one_iter_no_store(self):
-        x = domap(one_arg, range(100))
-        self.assertEqual(x, None)
+@given(ST.lists(ST.integers()))
+def test_domap_gives_none_for_unary_function(vals):
+    assert domap(one_arg, vals) is None
 
-    def test_two_iters_no_store(self):
-        x = domap(two_args, range(100), range(100, 200))
-        self.assertEqual(x, None)
+
+@given(ST.lists(ST.integers()), ST.lists(ST.integers()))
+def test_domap_gives_none_for_binary_function(xs, ys):
+    assert domap(two_args, xs, ys) is None

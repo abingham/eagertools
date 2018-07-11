@@ -32,7 +32,7 @@ setup(
     extras_require={
         # 'dev': ['check-manifest', 'wheel'],
         # 'doc': ['sphinx', 'cartouche'],
-        'test': ['pytest', 'tox'],
+        'test': ['hypothesis', 'pytest', 'tox'],
     },
 
 )
