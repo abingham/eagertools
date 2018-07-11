@@ -1,4 +1,6 @@
 *.py[co]
+.hypothesis
+.pytest_cache
 
 # Packages
 *.egg
